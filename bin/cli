@@ -1,0 +1,8 @@
+#!/bin/sh -x
+OPTS="--path=${WP_PATH} --allow-root"
+wp core download --locale=ja ${OPTS} || true
+wp core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASS} --dbhost=${DB_HOST} --path=${WP_PATH} --skip-salts --dbprefix=${DB_PREFIX} ${OPTS}
+wp core install --url=${WP_URL} --title=${WP_TITLE} --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL} ${OPTS}
+wp plugin install disable-comments ${OPTS}
+wp plugin install advanced-custom-fields ${OPTS}
+wp theme activate app ${OPTS}

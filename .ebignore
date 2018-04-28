@@ -1,0 +1,10 @@
+Dockerfile
+bin
+.env
+.envrc
+.env.dist
+.envrc.dist
+*~
+.DS_Store
+.git
+.gitignore

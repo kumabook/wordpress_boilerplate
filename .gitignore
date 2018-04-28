@@ -1,0 +1,30 @@
+*.log
+
+index.php
+xmlrpc.php
+/wp-*.php
+/wp-includes
+/wp-admin
+!wp-config.php
+/wp-content/*
+!/wp-content/themes
+/wp-content/themes/*
+!/wp-content/themes/app
+
+/license.txt
+/readme.html
+/sitemap.xml
+/sitemap.xml.gz
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# config
+.env
+.envrc
+
+*~
+.DS_Store

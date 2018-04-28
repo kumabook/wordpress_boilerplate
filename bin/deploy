@@ -1,0 +1,15 @@
+#!/bin/bash -eux
+
+OPTS="--ssh=${WP_SSH} --path=${WP_PATH}"
+
+wp core download --locale=ja || true
+
+eb deploy
+
+wp core install --url=${WP_URL}  --title=${WP_TITLE} --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PASSWORD} --admin_email=${WP_ADMIN_EMAIL} ${OPTS}
+
+wp plugin install disable-comments ${OPTS}
+wp plugin activate disable-comments ${OPTS}
+wp plugin install advanced-custom-fields ${OPTS}
+wp plugin activate advanced-custom-fields ${OPTS}
+wp theme activate app ${OPTS}

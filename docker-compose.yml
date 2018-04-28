@@ -1,0 +1,38 @@
+version: '2'
+volumes:
+  mysql:
+    driver: 'local'
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - cli
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html/
+  cli:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html/
+      - ./bin/cli:/bin/cli
+    command: /bin/cli
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress

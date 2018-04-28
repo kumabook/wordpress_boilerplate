@@ -1,0 +1,24 @@
+#!/bin/bash -eux
+
+ENVIRONMENT=${EB_ENVIRONMENT}
+VPC_ID=${EB_VPC_ID}
+VPC_SUBNETS=${EB_VPC_SUBNETS}
+VPC_SECURITYGROUPS=${EB_VPC_SECURITYGROUPS}
+
+eb create ${ENVIRONMENT} --vpc --elb-type application --platform php-7.0 --vpc.id=${VPC_ID} --vpc.ec2subnets=${VPC_SUBNETS} --vpc.elbsubnets=${VPC_SUBNETS} --vpc.publicip --vpc.elbpublic --vpc.securitygroups=${VPC_SECURITYGROUPS}
+
+eb setenv -e ${ENVIRONMENT}\
+   ENV=${ENV}\
+   DB_NAME=${DB_NAME}\
+   DB_USER=${DB_USER}\
+   DB_PASS=${DB_PASS}\
+   DB_HOST=${DB_HOST}\
+   DB_PREFIX=${DB_PREFIX}\
+   AUTH_KEY=${AUTH_KEY}\
+   SECURE_AUTH_KEY="${SECURE_AUTH_KEY}"\
+   LOGGED_IN_KEY="${LOGGED_IN_KEY}"\
+   NONCE_KEY="${NONCE_KEY}"\
+   AUTH_SALT="${AUTH_SALT}"\
+   SECURE_AUTH_SALT="${SECURE_AUTH_SALT}"\
+   LOGGED_IN_SALT="${LOGGED_IN_SALT}"\
+   NONCE_SALT="${NONCE_SALT}"
