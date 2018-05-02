@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+if [ -z "$1" ]; then
+  echo "USAGE: bin/backup dump.sql"
+  exit 1
+fi
+
+wp db export --ssh=${WP_SSH} --path=${WP_PATH} - > $1
