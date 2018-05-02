@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [ -z "$1" ]; then
+  echo "USAGE: bin/restore dump.sql"
+  exit 1
+fi
+
+OPTS="--path=${WP_PATH} --allow-root"
+
+echo $1
+#cat $1 | docker exec -i `docker-compose ps -q web` wp db import ${OPTS} -
